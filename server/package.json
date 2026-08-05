@@ -1,0 +1,24 @@
+{
+  "name": "@basebaka/server",
+  "private": true,
+  "license": "MIT",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/server/src/index.js",
+    "build:sidecar": "node ../scripts/build-sidecar.mjs"
+  },
+  "devDependencies": {
+    "@yao-pkg/pkg": "^6.22.0"
+  },
+  "pkg": {
+    "scripts": [
+      "dist/server/src/**/*.js",
+      "dist/shared/**/*.js"
+    ]
+  },
+  "dependencies": {
+    "firebase-admin": "^14.2.0"
+  }
+}

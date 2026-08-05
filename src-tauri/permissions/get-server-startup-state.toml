@@ -1,0 +1,4 @@
+[[permission]]
+identifier = "allow-get-server-startup-state"
+description = "Allows reading local server startup status from the UI."
+commands.allow = ["get_server_startup_state"]

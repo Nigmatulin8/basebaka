@@ -1,0 +1,4 @@
+[[permission]]
+identifier = "allow-restart-application"
+description = "Allows restarting the app after a startup failure."
+commands.allow = ["restart_application"]

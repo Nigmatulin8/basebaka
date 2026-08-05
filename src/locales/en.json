@@ -1,0 +1,20 @@
+{
+  "app": {
+    "getStarted": "Get started",
+    "editHint": "Edit <code>src/App.tsx</code> and save to test <code>HMR</code>",
+    "counter": "Count is {{count}}",
+    "documentation": "Documentation",
+    "documentationLead": "Your questions, answered",
+    "exploreVite": "Explore Vite",
+    "learnMore": "Learn more",
+    "connect": "Connect with us",
+    "connectLead": "Join the Vite community"
+  },
+  "startupGate": {
+    "failedTitle": "Something went wrong",
+    "failedSubtitle": "The local server failed to start. You can restart the app and try again.",
+    "restart": "Restart app",
+    "restarting": "Restarting…",
+    "statusReadFailed": "Failed to read startup status"
+  }
+}

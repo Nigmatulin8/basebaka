@@ -1,0 +1,20 @@
+{
+  "app": {
+    "getStarted": "Начать",
+    "editHint": "Измените <code>src/App.tsx</code> и сохраните, чтобы проверить <code>HMR</code>",
+    "counter": "Счётчик: {{count}}",
+    "documentation": "Документация",
+    "documentationLead": "Ответы на ваши вопросы",
+    "exploreVite": "Изучить Vite",
+    "learnMore": "Узнать больше",
+    "connect": "Связаться с нами",
+    "connectLead": "Присоединяйтесь к сообществу Vite"
+  },
+  "startupGate": {
+    "failedTitle": "Что-то пошло не так",
+    "failedSubtitle": "Не удалось запустить локальный сервер. Перезапустите приложение и попробуйте снова.",
+    "restart": "Перезапустить",
+    "restarting": "Перезапуск…",
+    "statusReadFailed": "Не удалось получить статус запуска"
+  }
+}

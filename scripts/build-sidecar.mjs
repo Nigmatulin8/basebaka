@@ -1,47 +1,18 @@
-/**
- * Builds the Tauri sidecar executable from the compiled Node server.
- *
- * Flow: pnpm build:server → pkg → src-tauri/binaries/basabaka-server-<target-triple>[.exe]
- *
- * Override pkg target: set SIDECAR_PKG_TARGET (e.g. node22-win-x64).
- * Default Node 22 targets match prebuilt binaries on pkg-fetch v3.6 (Node 20 assets are not published).
- */
 import { execFileSync } from 'node:child_process'
 import { existsSync, mkdirSync, renameSync, unlinkSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import {
+  resolveSidecarTarget,
+  sidecarBinaryPath,
+} from './lib/sidecar-platform.mjs'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const serverDir = join(root, 'server')
 const entry = join(serverDir, 'dist/server/src/index.js')
 const binariesDir = join(root, 'src-tauri/binaries')
 
-/** @type {Record<string, { pkg: string; triple: string; ext: string }>} */
-const platformTargets = {
-  'win32-x64': {
-    pkg: 'node22-win-x64',
-    triple: 'x86_64-pc-windows-msvc',
-    ext: '.exe',
-  },
-  'darwin-arm64': {
-    pkg: 'node22-macos-arm64',
-    triple: 'aarch64-apple-darwin',
-    ext: '',
-  },
-  'darwin-x64': {
-    pkg: 'node22-macos-x64',
-    triple: 'x86_64-apple-darwin',
-    ext: '',
-  },
-  'linux-x64': {
-    pkg: 'node22-linux-x64',
-    triple: 'x86_64-unknown-linux-gnu',
-    ext: '',
-  },
-}
-
-const platformKey = `${process.platform}-${process.arch}`
-const target = platformTargets[platformKey]
+const { platformKey, target } = resolveSidecarTarget()
 
 if (!target) {
   console.error(`Unsupported host for sidecar build: ${platformKey}`)
@@ -57,10 +28,7 @@ if (!existsSync(entry)) {
 mkdirSync(binariesDir, { recursive: true })
 
 const pkgTarget = process.env.SIDECAR_PKG_TARGET ?? target.pkg
-const outputBase = join(
-  binariesDir,
-  `basabaka-server-${target.triple}${target.ext}`,
-)
+const outputBase = sidecarBinaryPath(root, target)
 
 // Build into a staging name first so pkg does not unlink a running sidecar exe.
 const stagingBase = join(

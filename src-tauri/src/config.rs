@@ -7,6 +7,7 @@ use tauri::{AppHandle, Manager};
 pub const DEFAULT_SERVER_PORT: u16 = 3001;
 pub const SERVER_HOST: &str = "127.0.0.1";
 pub const SERVER_PORT_ENV: &str = "BASEBAKA_SERVER_PORT";
+pub const BASEBAKA_CONFIG_DIR_ENV: &str = "BASEBAKA_CONFIG_DIR";
 
 const CONFIG_FILE_NAME: &str = "basebaka.config.json";
 const LOCAL_CONFIG_FILE_NAME: &str = "basebaka.config.local.json";
@@ -17,7 +18,6 @@ struct ConfigFile {
     server_port: Option<u16>,
 }
 
-/// Resolve listen port: env → local config → defaults config → 3001.
 pub fn resolve_server_port(app: &AppHandle) -> u16 {
     if let Ok(raw) = std::env::var(SERVER_PORT_ENV) {
         if let Ok(port) = raw.parse::<u16>() {
@@ -29,9 +29,11 @@ pub fn resolve_server_port(app: &AppHandle) -> u16 {
     }
 
     for path in config_candidate_paths(app) {
-        if let Some(port) = read_port_from_file(&path) {
-            log::info!("using server port {port} from {}", path.display());
-            return port;
+        if let Some(port) = read_config_from_file(&path).and_then(|c| c.server_port) {
+            if port > 0 {
+                log::info!("using server port {port} from {}", path.display());
+                return port;
+            }
         }
     }
 
@@ -42,23 +44,29 @@ pub fn server_socket(port: u16) -> String {
     format!("{SERVER_HOST}:{port}")
 }
 
-fn read_port_from_file(path: &Path) -> Option<u16> {
+pub fn sidecar_config_dir(app: &AppHandle) -> Option<PathBuf> {
+    for path in config_candidate_paths(app) {
+        if path.is_file() {
+            return path.parent().map(Path::to_path_buf);
+        }
+    }
+    None
+}
+
+pub fn apply_sidecar_env(command: &mut std::process::Command, app: &AppHandle) {
+    if let Some(dir) = sidecar_config_dir(app) {
+        command.env(BASEBAKA_CONFIG_DIR_ENV, &dir);
+    }
+}
+
+fn read_config_from_file(path: &Path) -> Option<ConfigFile> {
     let contents = fs::read_to_string(path).ok()?;
-    let parsed: ConfigFile = match serde_json::from_str(&contents) {
-        Ok(value) => value,
+    match serde_json::from_str::<ConfigFile>(&contents) {
+        Ok(value) => Some(value),
         Err(error) => {
             log::warn!("ignoring invalid config {}: {error}", path.display());
-            return None;
-        }
-    };
-
-    match parsed.server_port {
-        Some(port) if port > 0 => Some(port),
-        Some(_) => {
-            log::warn!("ignoring invalid serverPort in {}", path.display());
             None
         }
-        None => None,
     }
 }
 
@@ -91,7 +99,6 @@ fn config_candidate_paths(app: &AppHandle) -> Vec<PathBuf> {
         }
     }
 
-    // Prefer local overrides first while keeping discovery order stable.
     let mut locals = Vec::new();
     let mut defaults = Vec::new();
     for path in paths {

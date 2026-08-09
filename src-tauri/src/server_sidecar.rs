@@ -10,7 +10,7 @@ use tauri::AppHandle;
 use tauri::Manager;
 use tauri_plugin_shell::ShellExt;
 
-use crate::config::{resolve_server_port, server_socket, SERVER_PORT_ENV};
+use crate::config::{apply_sidecar_env, resolve_server_port, server_socket, SERVER_PORT_ENV};
 
 /// Must match `bundle.externalBin` in `tauri.conf.json`.
 const SIDECAR_CONFIG_PATH: &str = "binaries/basabaka-server";
@@ -71,6 +71,7 @@ fn spawn_and_wait_ready(app: &AppHandle) -> Result<(Child, u16), String> {
         .env(SERVER_PORT_ENV, port.to_string())
         .stdout(Stdio::piped())
         .stderr(Stdio::piped());
+    apply_sidecar_env(&mut command, app);
 
     #[cfg(windows)]
     {

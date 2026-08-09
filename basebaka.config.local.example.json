@@ -1,0 +1,5 @@
+{
+  "serverPort": 3001,
+  "googleOAuthClientId": "YOUR_CLIENT_ID.apps.googleusercontent.com",
+  "googleOAuthClientSecret": "YOUR_CLIENT_SECRET"
+}

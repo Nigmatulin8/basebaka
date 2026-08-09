@@ -13,6 +13,22 @@ dist
 dist-ssr
 *.local
 
+# Local secrets and credentials (examples: .env.example, google-oauth.example.json)
+.env
+.env.*
+!.env.example
+
+google-oauth.json
+!google-oauth.example.json
+
+basebaka.config.local.json
+
+oauth-bundled.json
+
+# Firebase / GCP key files (service accounts belong in ~/.basebaka/service-accounts)
+credentials.json
+*-firebase-adminsdk-*.json
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -24,8 +40,5 @@ dist-ssr
 *.sln
 *.sw?
 
-# Sidecar pkg staging (build-sidecar.mjs)
-src-tauri/binaries/.basabaka-server-*
-
-# Local runtime overrides (see basebaka.config.json)
-basebaka.config.local.json
+# Packaged Tauri sidecar (pnpm build:sidecar / ensure:sidecar)
+src-tauri/binaries/*

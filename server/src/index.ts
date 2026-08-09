@@ -1,37 +1,35 @@
 import http from 'node:http'
+import { URL } from 'node:url'
+import { handleAuthRoute } from './auth/routes.js'
 import { SERVER_HOST } from '../../shared/config.js'
 import { resolveServerPort } from './config.js'
+import { sendJson, sendOptions } from './http.js'
+import { loadSidecarEnvFiles } from './load-env.js'
+
+loadSidecarEnvFiles()
 
 const PORT = resolveServerPort()
 
-/** Without a TTY (Tauri sidecar pipes stdout), Node block-buffers console.log. */
-function configurePipedStdout() {
-  if (process.stdout.isTTY) {
-    return
-  }
-
+if (!process.stdout.isTTY) {
   const handle = (
     process.stdout as NodeJS.WriteStream & {
       _handle?: { setBlocking?: (blocking: boolean) => void }
     }
   )._handle
-
   handle?.setBlocking?.(true)
 }
 
-configurePipedStdout()
+const server = http.createServer(async (req, res) => {
+  if (req.method === 'OPTIONS') {
+    sendOptions(res)
+    return
+  }
 
-const server = http.createServer((_req, res) => {
-  res.writeHead(200, {
-    'Content-Type': 'application/json',
-  })
-
-  res.end(
-    JSON.stringify({
-      ok: true,
-      message: 'Hello from Basebaka server',
-    }),
-  )
+  const url = new URL(req.url ?? '/', `http://${SERVER_HOST}:${PORT}`)
+  if (await handleAuthRoute(req, res, url.pathname)) {
+    return
+  }
+  sendJson(res, 404, { ok: false, error: 'Not found' })
 })
 
 server.listen(PORT, SERVER_HOST, () => {

@@ -1,20 +1,25 @@
 {
-  "app": {
-    "getStarted": "Начать",
-    "editHint": "Измените <code>src/App.tsx</code> и сохраните, чтобы проверить <code>HMR</code>",
-    "counter": "Счётчик: {{count}}",
-    "documentation": "Документация",
-    "documentationLead": "Ответы на ваши вопросы",
-    "exploreVite": "Изучить Vite",
-    "learnMore": "Узнать больше",
-    "connect": "Связаться с нами",
-    "connectLead": "Присоединяйтесь к сообществу Vite"
+  "home": {
+    "title": "Basebaka",
+    "lead": "Вы вошли в аккаунт. Здесь появятся инструменты для проектов."
   },
   "startupGate": {
     "failedTitle": "Что-то пошло не так",
     "failedSubtitle": "Не удалось запустить локальный сервер. Перезапустите приложение и попробуйте снова.",
     "restart": "Перезапустить",
     "restarting": "Перезапуск…",
-    "statusReadFailed": "Не удалось получить статус запуска"
+    "statusReadFailed": "Не удалось прочитать статус запуска"
+  },
+  "login": {
+    "title": "Вход в Basebaka",
+    "lead": "Используйте Google-аккаунт. Сессия хранится на этом устройстве.",
+    "signInGoogle": "Войти через Google",
+    "signingIn": "Вход…",
+    "checking": "Проверка входа…",
+    "signInFailed": "Не удалось войти",
+    "sidecarError": "Локальный сервер недоступен",
+    "waitingBrowser": "Завершите вход в браузере и вернитесь сюда.",
+    "timeout": "Время входа истекло. Попробуйте снова.",
+    "signOut": "Выйти"
   }
 }

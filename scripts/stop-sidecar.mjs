@@ -1,6 +1,3 @@
-/**
- * Stops running Basebaka sidecar / debug app processes.
- */
 import { execFileSync } from 'node:child_process'
 
 if (process.platform === 'win32') {
@@ -13,22 +10,12 @@ if (process.platform === 'win32') {
     ],
     { stdio: 'inherit' },
   )
-  process.exit(0)
+} else {
+  for (const pattern of ['basabaka-server', '/src-tauri/target/debug/app']) {
+    try {
+      execFileSync('pkill', ['-f', pattern], { stdio: 'ignore' })
+    } catch {
+      // no matching process
+    }
+  }
 }
-
-try {
-  execFileSync('pkill', ['-f', 'basabaka-server'], { stdio: 'ignore' })
-} catch {
-  // no matching process
-}
-
-try {
-  // Tauri debug binary is often named `app` / `basebaka`
-  execFileSync('pkill', ['-f', '/src-tauri/target/debug/app'], {
-    stdio: 'ignore',
-  })
-} catch {
-  // no matching process
-}
-
-console.log('Stopped sidecar-related processes (if any were running).')

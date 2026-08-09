@@ -1,14 +1,7 @@
 {
-  "app": {
-    "getStarted": "Get started",
-    "editHint": "Edit <code>src/App.tsx</code> and save to test <code>HMR</code>",
-    "counter": "Count is {{count}}",
-    "documentation": "Documentation",
-    "documentationLead": "Your questions, answered",
-    "exploreVite": "Explore Vite",
-    "learnMore": "Learn more",
-    "connect": "Connect with us",
-    "connectLead": "Join the Vite community"
+  "home": {
+    "title": "Basebaka",
+    "lead": "Signed in. Project tools will appear here."
   },
   "startupGate": {
     "failedTitle": "Something went wrong",
@@ -16,5 +9,17 @@
     "restart": "Restart app",
     "restarting": "Restarting…",
     "statusReadFailed": "Failed to read startup status"
+  },
+  "login": {
+    "title": "Sign in to Basebaka",
+    "lead": "Use your Google account. Session stays on this device.",
+    "signInGoogle": "Sign in with Google",
+    "signingIn": "Signing in…",
+    "checking": "Checking sign-in…",
+    "signInFailed": "Sign-in failed",
+    "sidecarError": "Local server unavailable",
+    "waitingBrowser": "Complete sign-in in the browser, then return here.",
+    "timeout": "Sign-in timed out. Try again.",
+    "signOut": "Sign out"
   }
 }

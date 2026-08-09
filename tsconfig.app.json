@@ -17,5 +17,5 @@
     "jsx": "react-jsx",
     "erasableSyntaxOnly": true
   },
-  "include": ["src", "shared"]
+  "include": ["src", "shared/config.ts", "shared/auth.ts"]
 }

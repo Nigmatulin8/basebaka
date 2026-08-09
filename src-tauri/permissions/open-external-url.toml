@@ -1,0 +1,4 @@
+[[permission]]
+identifier = "allow-open-external-url"
+description = "Opens HTTPS URLs in the system browser for Google sign-in."
+commands.allow = ["open_external_url"]

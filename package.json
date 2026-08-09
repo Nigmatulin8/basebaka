@@ -6,12 +6,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "dev:server": "pnpm --filter @basebaka/server dev",
+    "dev:server": "tsx watch server/src/index.ts",
     "build": "pnpm build:server && pnpm build:ui",
     "build:ui": "tsc -b tsconfig.app.json tsconfig.node.json && vite build",
     "build:server": "tsc -p tsconfig.server.json",
-    "build:sidecar": "pnpm build:server && node scripts/build-sidecar.mjs",
+    "build:sidecar": "pnpm build:server && node scripts/write-oauth-bundled.mjs && node scripts/build-sidecar.mjs",
     "ensure:sidecar": "node scripts/ensure-sidecar.mjs",
+    "setup:google-oauth": "node scripts/setup-google-oauth.mjs",
     "stop:sidecar": "node scripts/stop-sidecar.mjs",
     "typecheck": "tsc -b --pretty",
     "lint": "oxlint . && eslint .",
@@ -19,27 +20,22 @@
     "format": "prettier . --write",
     "format:check": "prettier . --check",
     "preview": "vite preview",
-    "tauri": "tauri"
+    "tauri": "tauri",
+    "tauri:dev": "node scripts/stop-sidecar.mjs && tauri dev"
   },
   "dependencies": {
-    "@firebase/app": "^0.16.0",
-    "@firebase/auth": "^1.13.4",
-    "@tailwindcss/vite": "^4.3.3",
     "@tanstack/react-query": "^5.101.4",
     "@tanstack/react-router": "^1.170.18",
-    "@tanstack/react-virtual": "^3.14.9",
     "@tauri-apps/api": "^2.11.1",
+    "@tauri-apps/plugin-opener": "^2.5.4",
     "i18next": "^26.3.6",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
-    "react-i18next": "^17.0.11",
-    "tailwindcss": "^4.3.3",
-    "vitest": "^4.1.10",
-    "zod": "^4.4.3",
-    "zustand": "^5.0.14"
+    "react-i18next": "^17.0.11"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@tanstack/router-plugin": "^1.168.27",
     "@tauri-apps/cli": "^2.11.4",
     "@types/node": "^24.13.3",
     "@types/react": "^19.2.17",

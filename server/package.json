@@ -16,9 +16,9 @@
     "scripts": [
       "dist/server/src/**/*.js",
       "dist/shared/**/*.js"
+    ],
+    "assets": [
+      "oauth-bundled.json"
     ]
-  },
-  "dependencies": {
-    "firebase-admin": "^14.2.0"
   }
 }

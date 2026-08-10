@@ -1,5 +1,8 @@
 import { useQuery } from '@tanstack/react-query'
-import type { AuthStatusResponse, GoogleAuthStartResponse } from '../../shared/auth.ts'
+import type {
+  AuthStatusResponse,
+  GoogleAuthStartResponse,
+} from '../../shared/auth.ts'
 import { useServerPort } from './server-port-context.tsx'
 import { readSidecarErrorMessage, sidecarFetch } from './sidecar-client.ts'
 
@@ -39,7 +42,9 @@ export function useAuthStatus() {
   })
 }
 
-export async function fetchAuthStatus(port: number): Promise<AuthStatusResponse> {
+export async function fetchAuthStatus(
+  port: number,
+): Promise<AuthStatusResponse> {
   const res = await sidecarFetch(port, '/auth/status')
   if (!res.ok) {
     throw new Error(`Auth status failed (${res.status})`)
@@ -58,10 +63,15 @@ export async function waitForGoogleSignIn(port: number): Promise<boolean> {
   return false
 }
 
-export async function startGoogleSignIn(port: number): Promise<GoogleAuthStartResponse> {
+export async function startGoogleSignIn(
+  port: number,
+): Promise<GoogleAuthStartResponse> {
   const res = await sidecarFetch(port, '/auth/google/start', { method: 'POST' })
   if (!res.ok) {
-    throw new Error((await readSidecarErrorMessage(res)) ?? `Sign-in start failed (${res.status})`)
+    throw new Error(
+      (await readSidecarErrorMessage(res)) ??
+        `Sign-in start failed (${res.status})`,
+    )
   }
   return res.json() as Promise<GoogleAuthStartResponse>
 }

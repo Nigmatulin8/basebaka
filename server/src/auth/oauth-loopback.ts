@@ -10,7 +10,9 @@ export function findAvailablePort(
     server.listen(startPort, '127.0.0.1', () => {
       const address = server.address()
       const port =
-        typeof address === 'object' && address !== null ? address.port : startPort
+        typeof address === 'object' && address !== null
+          ? address.port
+          : startPort
       server.close((error) => {
         if (error) {
           reject(error)

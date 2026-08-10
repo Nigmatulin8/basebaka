@@ -1,11 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useRouter } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
-import {
-  authQueryKeys,
-  logoutAuth,
-  useAuthStatus,
-} from '../../lib/auth-api.ts'
+import { authQueryKeys, logoutAuth, useAuthStatus } from '../../lib/auth-api.ts'
 import { useServerPort } from '../../lib/server-port-context.tsx'
 
 export function AppHeader() {
@@ -18,7 +14,9 @@ export function AppHeader() {
   const logoutMutation = useMutation({
     mutationFn: () => logoutAuth(port),
     onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: authQueryKeys.status(port) })
+      await queryClient.invalidateQueries({
+        queryKey: authQueryKeys.status(port),
+      })
       await router.navigate({ to: '/login' })
     },
   })

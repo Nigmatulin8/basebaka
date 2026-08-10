@@ -5,7 +5,11 @@ import type {
   HealthResponse,
 } from '../../../shared/auth.js'
 import { sendJson } from '../http.js'
-import { getAuthStatus, logoutGoogle, startGoogleSignIn } from './google-oauth.js'
+import {
+  getAuthStatus,
+  logoutGoogle,
+  startGoogleSignIn,
+} from './google-oauth.js'
 
 const SIDECAR_VERSION = '0.2.3'
 
@@ -31,7 +35,9 @@ export async function handleAuthRoute(
   if (pathname === '/auth/google/start' && req.method === 'POST') {
     const result = await startGoogleSignIn()
     if ('authUrl' in result) {
-      sendJson(res, 200, { authUrl: result.authUrl } satisfies GoogleAuthStartResponse)
+      sendJson(res, 200, {
+        authUrl: result.authUrl,
+      } satisfies GoogleAuthStartResponse)
       return true
     }
     sendJson(res, 503, result satisfies AuthStatusResponse)

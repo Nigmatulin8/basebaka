@@ -56,7 +56,11 @@ function mergedConfig(): BasebakaConfigFile {
     merged = { ...merged, ...userOAuth }
   }
 
-  const tiers = [BUNDLED_OAUTH_FILE_NAME, CONFIG_FILE_NAME, LOCAL_CONFIG_FILE_NAME]
+  const tiers = [
+    BUNDLED_OAUTH_FILE_NAME,
+    CONFIG_FILE_NAME,
+    LOCAL_CONFIG_FILE_NAME,
+  ]
   for (const name of tiers) {
     for (const root of configSearchRoots()) {
       const file = readConfigFile(join(root, name))
@@ -70,7 +74,10 @@ function mergedConfig(): BasebakaConfigFile {
 }
 
 function envClientId(): string | null {
-  for (const key of [GOOGLE_OAUTH_CLIENT_ID_ENV, GOOGLE_CLIENT_ID_ENV] as const) {
+  for (const key of [
+    GOOGLE_OAUTH_CLIENT_ID_ENV,
+    GOOGLE_CLIENT_ID_ENV,
+  ] as const) {
     const value = process.env[key]?.trim()
     if (value && value !== 'YOUR_GOOGLE_CLIENT_ID_HERE') {
       return value
@@ -80,7 +87,10 @@ function envClientId(): string | null {
 }
 
 function envClientSecret(): string | null {
-  for (const key of [GOOGLE_OAUTH_CLIENT_SECRET_ENV, GOOGLE_CLIENT_SECRET_ENV] as const) {
+  for (const key of [
+    GOOGLE_OAUTH_CLIENT_SECRET_ENV,
+    GOOGLE_CLIENT_SECRET_ENV,
+  ] as const) {
     const value = process.env[key]?.trim()
     if (value && value !== 'YOUR_GOOGLE_CLIENT_SECRET_HERE') {
       return value

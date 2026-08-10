@@ -10,7 +10,7 @@ The app combines a **React** UI, a **local Node sidecar** (API and Firebase-faci
 | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Desktop shell       | [Tauri 2](https://v2.tauri.app/) (Rust)                                                                                                                          |
 | UI                  | [React 19](https://react.dev/), [TypeScript](https://www.typescriptlang.org/), [Vite](https://vite.dev/)                                                         |
-| Styling             | SCSS                                                                                                                |
+| Styling             | SCSS                                                                                                                                                             |
 | Data & routing (UI) | [TanStack Query](https://tanstack.com/query), [TanStack Router](https://tanstack.com/router), [Zustand](https://zustand.docs.pmnd.dev/), [Zod](https://zod.dev/) |
 | Local API           | Node.js (`server/`), HTTP on `127.0.0.1` (port from `basebaka.config.json`, default `3001`)                                                                      |
 | Sidecar binary      | [`@yao-pkg/pkg`](https://github.com/yao-pkg/pkg) → bundled exe for Tauri `externalBin`                                                                           |

@@ -9,7 +9,10 @@ import {
   useAuthStatus,
   waitForGoogleSignIn,
 } from '../../lib/auth-api.ts'
-import { openExternalUrl, preOpenExternalBrowserTab } from '../../lib/open-external-url.ts'
+import {
+  openExternalUrl,
+  preOpenExternalBrowserTab,
+} from '../../lib/open-external-url.ts'
 import { useServerPort } from '../../lib/server-port-context.tsx'
 
 export function LoginPage() {
@@ -31,7 +34,9 @@ export function LoginPage() {
       await openExternalUrl(authUrl, { preOpenedWindow: browserTab })
 
       if (await waitForGoogleSignIn(port)) {
-        await queryClient.invalidateQueries({ queryKey: authQueryKeys.status(port) })
+        await queryClient.invalidateQueries({
+          queryKey: authQueryKeys.status(port),
+        })
         await router.navigate({ to: '/' })
         return
       }
@@ -61,10 +66,16 @@ export function LoginPage() {
         )}
 
         {misconfigured && (
-          <pre className="login-screen__error login-screen__error--block">{misconfigured}</pre>
+          <pre className="login-screen__error login-screen__error--block">
+            {misconfigured}
+          </pre>
         )}
 
-        {error && <pre className="login-screen__error login-screen__error--block">{error}</pre>}
+        {error && (
+          <pre className="login-screen__error login-screen__error--block">
+            {error}
+          </pre>
+        )}
 
         <button
           type="button"

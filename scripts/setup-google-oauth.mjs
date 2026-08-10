@@ -14,7 +14,9 @@ const { clientId, clientSecret } = loadGoogleOAuthCredentials(root)
 
 if (!credentialsLookValid(clientId)) {
   console.error('No Google OAuth credentials found.')
-  console.error(`Add GOOGLE_CLIENT_ID / GOOGLE_CLIENT_SECRET to ${join(root, '.env')} (Desktop client in GCP).`)
+  console.error(
+    `Add GOOGLE_CLIENT_ID / GOOGLE_CLIENT_SECRET to ${join(root, '.env')} (Desktop client in GCP).`,
+  )
   console.error(`Or edit ${userFile} — see google-oauth.example.json`)
   process.exit(1)
 }

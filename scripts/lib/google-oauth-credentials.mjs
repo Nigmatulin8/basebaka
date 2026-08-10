@@ -46,7 +46,8 @@ export function loadGoogleOAuthCredentials(root) {
     ...parseEnvFile(join(homedir(), '.basebaka', '.env')),
   }
   const local = readJson(join(root, 'basebaka.config.local.json')) ?? {}
-  const userOAuth = readJson(join(homedir(), '.basebaka', 'google-oauth.json')) ?? {}
+  const userOAuth =
+    readJson(join(homedir(), '.basebaka', 'google-oauth.json')) ?? {}
 
   const clientId =
     env.GOOGLE_OAUTH_CLIENT_ID ||

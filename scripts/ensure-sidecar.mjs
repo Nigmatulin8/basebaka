@@ -29,7 +29,11 @@ if (existsSync(outputPath) && !sidecarIsStale()) {
   process.exit(0)
 }
 
-console.log(existsSync(outputPath) ? 'Sidecar stale — rebuilding…' : `Sidecar missing (${platformKey})`)
+console.log(
+  existsSync(outputPath)
+    ? 'Sidecar stale — rebuilding…'
+    : `Sidecar missing (${platformKey})`,
+)
 
 try {
   execFileSync('pnpm', ['build:sidecar'], {

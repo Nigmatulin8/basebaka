@@ -397,10 +397,15 @@ function startLoopbackServer(
         )
       } catch (callbackError) {
         const message =
-          callbackError instanceof Error ? callbackError.message : 'Unknown error'
+          callbackError instanceof Error
+            ? callbackError.message
+            : 'Unknown error'
         res.writeHead(500, { 'Content-Type': 'text/html; charset=utf-8' })
         res.end(
-          htmlPage('Sign-in failed', `<h1>Sign-in failed</h1><p>${message}</p>`),
+          htmlPage(
+            'Sign-in failed',
+            `<h1>Sign-in failed</h1><p>${message}</p>`,
+          ),
         )
       }
 

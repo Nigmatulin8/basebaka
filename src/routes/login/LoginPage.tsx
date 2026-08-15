@@ -60,11 +60,7 @@ export function LoginPage() {
     <div className="login-screen fixed inset-0 z-10 flex items-center justify-center bg-base px-4">
       <div className="login-card w-85 rounded-xl border border-line bg-surface px-7 py-8 text-center">
         <div className="login-mark mx-auto mb-4 flex size-11 items-center justify-center rounded-xl bg-accent-soft">
-          <img
-            src={basebakaIcon}
-            alt=""
-            className="size-5.5 rounded-sm"
-          />
+          <img src={basebakaIcon} alt="" className="size-5.5 rounded-sm" />
         </div>
 
         <h1 className="login-title mb-1.5 font-mono text-base text-ink">
@@ -126,7 +122,7 @@ export function LoginPage() {
           disabled={busy}
           onClick={() => setError(t('login.serviceAccountSoon'))}
         >
-          <Braces className="shrink-0 text-accent" aria-hidden size={18}/>
+          <Braces className="shrink-0 text-accent" aria-hidden size={18} />
           <span className="min-w-0">
             <span className="block font-mono text-xs text-ink">
               {t('login.serviceAccountTitle')}

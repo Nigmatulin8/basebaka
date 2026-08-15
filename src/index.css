@@ -1,0 +1,329 @@
+@import 'tailwindcss';
+
+/*
+  Design tokens — цветовая система приложения.
+
+  Переключение темы: атрибут data-theme на <html> или <body>.
+  По умолчанию (без атрибута) — тема "cyan".
+
+  Токены status (success / danger) и chip-* НЕ меняются между темами —
+  цвет ошибки должен оставаться красным независимо от палитры.
+*/
+
+:root,
+[data-theme='cyan'] {
+  --color-bg-base: #0a0d12;
+  --color-bg-main: #12161d;
+  --color-bg-secondary: #171c25;
+  --color-border-main: #232935;
+  --color-border-strong: #2e3542;
+  --color-accent: #4cc9f0;
+  --color-accent-soft: #16232b;
+  --color-warning: #f5a623;
+
+  --color-text-main: #e8eaed;
+  --color-text-secondary: #8a93a3;
+  --color-text-muted: #5c6472;
+
+  --color-success: #3ecf8e;
+  --color-success-soft: #12261d;
+  --color-danger: #f0555f;
+  --color-danger-soft: #2a1417;
+
+  --color-chip-blue: #4cc9f0;
+  --color-chip-purple: #8b7cf6;
+  --color-chip-amber: #f5a623;
+
+  /* Google Sign-In button (brand guideline; not themed) */
+  --color-google-bg: #ffffff;
+  --color-google-bg-hover: #f8f9fa;
+  --color-google-border: #dadce0;
+  --color-google-text: #3c4043;
+}
+
+[data-theme='ember'] {
+  --color-bg-base: #120e0a;
+  --color-bg-main: #1d150e;
+  --color-bg-secondary: #241a11;
+  --color-border-main: #332419;
+  --color-border-strong: #42301f;
+  --color-accent: #f5a623;
+  --color-accent-soft: #2e2410;
+  --color-warning: #4cc9f0;
+}
+
+[data-theme='violet'] {
+  --color-bg-base: #0d0b14;
+  --color-bg-main: #16121f;
+  --color-bg-secondary: #1c1728;
+  --color-border-main: #2a2438;
+  --color-border-strong: #382f4a;
+  --color-accent: #9d7ff0;
+  --color-accent-soft: #241e38;
+  --color-warning: #f5a623;
+}
+
+[data-theme='terminal'] {
+  --color-bg-base: #080b08;
+  --color-bg-main: #0f150f;
+  --color-bg-secondary: #141c14;
+  --color-border-main: #1f2e1f;
+  --color-border-strong: #2b3f2b;
+  --color-accent: #3ecf8e;
+  --color-accent-soft: #132a1c;
+  --color-warning: #3ecf8e;
+}
+
+[data-theme='ice'] {
+  --color-bg-base: #0a0f14;
+  --color-bg-main: #121a22;
+  --color-bg-secondary: #17212b;
+  --color-border-main: #233240;
+  --color-border-strong: #2e4254;
+  --color-accent: #7dd3e8;
+  --color-accent-soft: #152833;
+  --color-warning: #f5a623;
+}
+
+[data-theme='graphite'] {
+  --color-bg-base: #0d0d0f;
+  --color-bg-main: #16161a;
+  --color-bg-secondary: #1c1c21;
+  --color-border-main: #2a2a30;
+  --color-border-strong: #38383f;
+  --color-accent: #58a6ff;
+  --color-accent-soft: #152436;
+  --color-warning: #f5a623;
+}
+
+[data-theme='obsidian'] {
+  --color-bg-base: #050505;
+  --color-bg-main: #101010;
+  --color-bg-secondary: #161616;
+  --color-border-main: #242424;
+  --color-border-strong: #323232;
+  --color-accent: #ededed;
+  --color-accent-soft: #1e1e1e;
+  --color-warning: #f5a623;
+}
+
+[data-theme='stealth'] {
+  --color-bg-base: #070d0a;
+  --color-bg-main: #0f1811;
+  --color-bg-secondary: #142019;
+  --color-border-main: #1e2e24;
+  --color-border-strong: #2a3f32;
+  --color-accent: #2fbfa0;
+  --color-accent-soft: #0f2620;
+  --color-warning: #f5a623;
+}
+
+[data-theme='midnight'] {
+  --color-bg-base: #0b0b18;
+  --color-bg-main: #131327;
+  --color-bg-secondary: #191933;
+  --color-border-main: #262647;
+  --color-border-strong: #33335c;
+  --color-accent: #8c9eff;
+  --color-accent-soft: #1c1c3a;
+  --color-warning: #f5a623;
+}
+
+[data-theme='blood'] {
+  --color-bg-base: #120a0c;
+  --color-bg-main: #1d1114;
+  --color-bg-secondary: #251319;
+  --color-border-main: #35181e;
+  --color-border-strong: #472129;
+  --color-accent: #e0485a;
+  --color-accent-soft: #2e1418;
+  --color-warning: #f5a623;
+}
+
+[data-theme='sand'] {
+  --color-bg-base: #120f0a;
+  --color-bg-main: #1c1710;
+  --color-bg-secondary: #241e14;
+  --color-border-main: #332b1d;
+  --color-border-strong: #453b29;
+  --color-accent: #d9b382;
+  --color-accent-soft: #2b2313;
+  --color-warning: #f5a623;
+}
+
+[data-theme='rose'] {
+  --color-bg-base: #130a0e;
+  --color-bg-main: #1e1017;
+  --color-bg-secondary: #26141f;
+  --color-border-main: #37192a;
+  --color-border-strong: #4a2138;
+  --color-accent: #f26d9a;
+  --color-accent-soft: #2e1522;
+  --color-warning: #f5a623;
+}
+
+[data-theme='arctic'] {
+  --color-bg-base: #081112;
+  --color-bg-main: #0f1b1d;
+  --color-bg-secondary: #142427;
+  --color-border-main: #1f3438;
+  --color-border-strong: #2a464b;
+  --color-accent: #6fe7dd;
+  --color-accent-soft: #0f2b29;
+  --color-warning: #f5a623;
+}
+
+[data-theme='amethyst'] {
+  --color-bg-base: #0f0a14;
+  --color-bg-main: #191122;
+  --color-bg-secondary: #21162c;
+  --color-border-main: #33203f;
+  --color-border-strong: #452b54;
+  --color-accent: #c355f5;
+  --color-accent-soft: #2c1638;
+  --color-warning: #f5a623;
+}
+
+[data-theme='copper'] {
+  --color-bg-base: #130e0b;
+  --color-bg-main: #1f1610;
+  --color-bg-secondary: #281d15;
+  --color-border-main: #3a2a1d;
+  --color-border-strong: #4e3927;
+  --color-accent: #c97b4a;
+  --color-accent-soft: #2e1d10;
+  --color-warning: #4cc9f0;
+}
+
+/* ==========================================================================
+   Утилитарные классы поверх токенов.
+   Формы/отступы/сетку — из Tailwind; цвет — отсюда.
+   Пример: <div class="bg-surface border border-line rounded-lg p-4">
+   ========================================================================== */
+
+.bg-base {
+  background-color: var(--color-bg-base);
+}
+.bg-surface {
+  background-color: var(--color-bg-main);
+}
+.bg-surface2 {
+  background-color: var(--color-bg-secondary);
+}
+.bg-accent {
+  background-color: var(--color-accent);
+}
+.bg-accent-soft {
+  background-color: var(--color-accent-soft);
+}
+.bg-success {
+  background-color: var(--color-success);
+}
+.bg-success-soft {
+  background-color: var(--color-success-soft);
+}
+.bg-danger {
+  background-color: var(--color-danger);
+}
+.bg-danger-soft {
+  background-color: var(--color-danger-soft);
+}
+.bg-warning {
+  background-color: var(--color-warning);
+}
+.bg-chip-blue {
+  background-color: var(--color-chip-blue);
+}
+.bg-chip-purple {
+  background-color: var(--color-chip-purple);
+}
+.bg-chip-amber {
+  background-color: var(--color-chip-amber);
+}
+
+.text-ink {
+  color: var(--color-text-main);
+}
+.text-ink-soft {
+  color: var(--color-text-secondary);
+}
+.text-ink-muted {
+  color: var(--color-text-muted);
+}
+.text-accent {
+  color: var(--color-accent);
+}
+.text-success {
+  color: var(--color-success);
+}
+.text-danger {
+  color: var(--color-danger);
+}
+.text-warning {
+  color: var(--color-warning);
+}
+
+.border-line {
+  border-color: var(--color-border-main);
+}
+.border-line-strong {
+  border-color: var(--color-border-strong);
+}
+.border-accent {
+  border-color: var(--color-accent);
+}
+.border-success {
+  border-color: var(--color-success);
+}
+.border-danger {
+  border-color: var(--color-danger);
+}
+
+.bg-line {
+  background-color: var(--color-border-main);
+}
+.bg-line-strong {
+  background-color: var(--color-border-strong);
+}
+
+.google-btn {
+  background-color: var(--color-google-bg);
+  border-color: var(--color-google-border);
+  color: var(--color-google-text);
+}
+
+.google-btn:hover:not(:disabled) {
+  background-color: var(--color-google-bg-hover);
+}
+
+#root {
+  min-height: 100svh;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  font:
+    16px/1.5 system-ui,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+  color: var(--color-text-main);
+  background-color: var(--color-bg-base);
+  color-scheme: dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2 {
+  color: var(--color-text-main);
+}

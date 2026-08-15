@@ -1,15 +1,15 @@
 import { useEffect, useState, type ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
-import { DEFAULT_SERVER_PORT } from '../../../shared/config.ts'
-import { ServerPortContext } from '../../lib/server-port-context.tsx'
-import i18n from '../../lib/i18n.ts'
+import { DEFAULT_SERVER_PORT } from '@shared/config.ts'
+import { ServerPortContext } from '@/lib/server-port-context.tsx'
+import i18n from '@/lib/i18n.ts'
 import {
   fetchStartupStatus,
   restartApplication,
   runningInTauri,
   watchStartupStatus,
   type StartupStatus,
-} from '../../lib/startup.ts'
+} from '@/lib/startup.ts'
 import './styles.scss'
 
 type Props = {
@@ -57,7 +57,7 @@ export function StartupGate({ children }: Props) {
 
   if (status.status === 'loading') {
     return (
-      <div className="startup-gate startup-gate--loading">
+      <div className="startup-gate startup-gate--loading bg-base">
         <div className="startup-gate__clouds" aria-hidden="true">
           <div className="startup-gate__cloud startup-gate__cloud--1" />
           <div className="startup-gate__cloud startup-gate__cloud--2" />
@@ -91,15 +91,19 @@ export function StartupGate({ children }: Props) {
 
   if (status.status === 'failed') {
     return (
-      <div className="startup-gate startup-gate--failed">
-        <h1 className="startup-gate__title">{t('startupGate.failedTitle')}</h1>
-        <p className="startup-gate__subtitle">
+      <div className="startup-gate startup-gate--failed bg-base">
+        <h1 className="startup-gate__title text-ink">
+          {t('startupGate.failedTitle')}
+        </h1>
+        <p className="startup-gate__subtitle text-ink-soft">
           {t('startupGate.failedSubtitle')}
         </p>
-        <pre className="startup-gate__message">{status.message}</pre>
+        <pre className="startup-gate__message text-ink-muted">
+          {status.message}
+        </pre>
         <button
           type="button"
-          className="startup-gate__restart"
+          className="startup-gate__restart bg-accent-soft text-accent border border-accent"
           disabled={restarting}
           onClick={() => {
             setRestarting(true)

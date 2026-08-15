@@ -2,7 +2,12 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { tanstackRouter } from '@tanstack/router-plugin/vite'
 import { readFileSync } from 'node:fs'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { DEFAULT_SERVER_PORT } from './shared/config.ts'
+import tailwindcss from '@tailwindcss/vite'
+
+const rootDir = fileURLToPath(new URL('.', import.meta.url))
 
 function resolveDevSidecarPort(): number {
   const fromEnv = Number(process.env.BASEBAKA_SERVER_PORT)
@@ -34,7 +39,15 @@ export default defineConfig({
       autoCodeSplitting: true,
     }),
     react(),
+    tailwindcss(),
   ],
+  resolve: {
+    alias: {
+      '@assets': path.join(rootDir, 'src/assets'),
+      '@shared': path.join(rootDir, 'shared'),
+      '@': path.join(rootDir, 'src'),
+    },
+  },
   server: {
     proxy: {
       '/sidecar': {

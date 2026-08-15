@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import type {
   AuthStatusResponse,
   GoogleAuthStartResponse,
-} from '../../shared/auth.ts'
+} from '@shared/auth.ts'
 import { useServerPort } from './server-port-context.tsx'
 import { readSidecarErrorMessage, sidecarFetch } from './sidecar-client.ts'
 

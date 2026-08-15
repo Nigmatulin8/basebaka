@@ -20,6 +20,10 @@
     "sidecarError": "Local server unavailable",
     "waitingBrowser": "Complete sign-in in the browser, then return here.",
     "timeout": "Sign-in timed out. Try again.",
-    "signOut": "Sign out"
+    "signOut": "Sign out",
+    "or": "or",
+    "serviceAccountTitle": "Service Account JSON",
+    "serviceAccountLead": "Import a Google Cloud key file",
+    "serviceAccountSoon": "Service Account sign-in is not available yet."
   }
 }

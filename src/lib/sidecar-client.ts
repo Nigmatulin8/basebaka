@@ -1,4 +1,4 @@
-import { DEFAULT_SERVER_PORT, SERVER_HOST } from '../../shared/config.ts'
+import { DEFAULT_SERVER_PORT, SERVER_HOST } from '@shared/config.ts'
 
 export async function sidecarFetch(
   port: number,

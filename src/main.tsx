@@ -1,11 +1,11 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './index.scss'
-import { DocumentLanguage } from './components/DocumentLanguage.tsx'
-import { i18nReady } from './lib/i18n.ts'
-import { StartupGate } from './screens/StartupGate'
+import './index.css'
+import { DocumentLanguage } from '@/components/DocumentLanguage.tsx'
+import { i18nReady } from '@/lib/i18n.ts'
+import { StartupGate } from '@/screens/StartupGate'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { AppRouter } from './router/AppRouter.tsx'
+import { AppRouter } from '@/router/AppRouter.tsx'
 
 const queryClient = new QueryClient()
 

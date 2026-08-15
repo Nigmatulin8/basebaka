@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useRouter } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
-import { authQueryKeys, logoutAuth, useAuthStatus } from '../../lib/auth-api.ts'
-import { useServerPort } from '../../lib/server-port-context.tsx'
+import { authQueryKeys, logoutAuth, useAuthStatus } from '@/lib/auth-api.ts'
+import { useServerPort } from '@/lib/server-port-context.tsx'
 
 export function AppHeader() {
   const { t } = useTranslation()
@@ -25,13 +25,15 @@ export function AppHeader() {
   const email = auth?.status === 'authenticated' ? auth.email : null
 
   return (
-    <header className="app-header">
-      <div className="app-header__brand">Basebaka</div>
+    <header className="app-header bg-surface text-ink border-line">
+      <div className="app-header__brand text-ink">Basebaka</div>
       <div className="app-header__actions">
-        {email && <span className="app-header__email">{email}</span>}
+        {email && (
+          <span className="app-header__email text-ink-soft">{email}</span>
+        )}
         <button
           type="button"
-          className="app-header__btn app-header__btn--ghost"
+          className="app-header__btn app-header__btn--ghost text-ink border border-line rounded-md"
           disabled={logoutMutation.isPending}
           onClick={() => logoutMutation.mutate()}
         >

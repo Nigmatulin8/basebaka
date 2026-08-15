@@ -4,7 +4,7 @@ import {
   fetchAuthStatus,
   isAuthenticated,
   needsSignIn,
-} from '../lib/auth-api.ts'
+} from '@/lib/auth-api.ts'
 import type { RouterContext } from './context.ts'
 
 export async function loadAuthStatus(context: RouterContext) {

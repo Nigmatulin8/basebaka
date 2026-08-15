@@ -20,6 +20,10 @@
     "sidecarError": "Локальный сервер недоступен",
     "waitingBrowser": "Завершите вход в браузере и вернитесь сюда.",
     "timeout": "Время входа истекло. Попробуйте снова.",
-    "signOut": "Выйти"
+    "signOut": "Выйти",
+    "or": "или",
+    "serviceAccountTitle": "Service Account JSON",
+    "serviceAccountLead": "Импортируйте ключ Google Cloud",
+    "serviceAccountSoon": "Вход через Service Account пока недоступен."
   }
 }

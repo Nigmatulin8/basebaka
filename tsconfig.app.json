@@ -19,7 +19,9 @@
     "paths": {
       "@/*": ["./src/*"],
       "@assets/*": ["./src/assets/*"],
-      "@shared/*": ["./shared/*"]
+      "@shared/*": ["./shared/*"],
+      "@ui/*": ["./src/components/ui/*"],
+      "@ui": ["./src/components/ui"]
     }
   },
   "include": ["src", "shared/config.ts", "shared/auth.ts"]

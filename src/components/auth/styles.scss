@@ -1,38 +1,3 @@
-.app-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 0.5rem 1rem;
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-}
-
-.app-header__brand {
-  font-weight: 600;
-}
-
-.app-header__actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.app-header__email {
-  font-size: 0.875rem;
-}
-
-.app-header__btn {
-  padding: 0.35rem 0.75rem;
-  font-size: 0.875rem;
-  cursor: pointer;
-}
-
-.app-header__btn--ghost {
-  background: transparent;
-}
-
 .home-screen {
   padding: 2rem 1.5rem;
   max-width: 40rem;

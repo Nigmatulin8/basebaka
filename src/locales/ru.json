@@ -25,5 +25,13 @@
     "serviceAccountTitle": "Service Account JSON",
     "serviceAccountLead": "Импортируйте ключ Google Cloud",
     "serviceAccountSoon": "Вход через Service Account пока недоступен."
+  },
+  "sideNav": {
+    "label": "Боковая навигация",
+    "searchPlaceholder": "Поиск",
+    "settings": "Настройки"
+  },
+  "common": {
+    "clear": "Очистить"
   }
 }

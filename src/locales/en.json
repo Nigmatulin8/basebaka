@@ -25,5 +25,13 @@
     "serviceAccountTitle": "Service Account JSON",
     "serviceAccountLead": "Import a Google Cloud key file",
     "serviceAccountSoon": "Service Account sign-in is not available yet."
+  },
+  "sideNav": {
+    "label": "Side navigation",
+    "searchPlaceholder": "Search",
+    "settings": "Settings"
+  },
+  "common": {
+    "clear": "Clear"
   }
 }

@@ -1,4 +1,5 @@
 import { Input } from '@ui/Input'
+import { Link } from '@tanstack/react-router'
 import { Search, Settings } from 'lucide-react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -9,7 +10,7 @@ export function SideNav() {
 
   return (
     <aside
-      className="flex h-svh w-52.5 shrink-0 flex-col border-r border-line bg-surface px-2.5 py-2"
+      className="flex h-svh w-[250px] shrink-0 flex-col border-r border-line bg-surface px-2.5 py-2"
       aria-label={t('sideNav.label')}
     >
       <div className="w-full">
@@ -22,13 +23,16 @@ export function SideNav() {
         />
       </div>
 
-      <div className="w-full grow my-3">123</div>
+      <div className="my-3 w-full grow" />
 
-      <div className="w-full border-line border-t py-2">
-        <div className="flex items-center px-2 py-2 rounded-lg cursor-pointer transition-colors hover:bg-zinc-700/50 text-lg">
+      <div className="w-full border-t border-line py-2">
+        <Link
+          to="/settings"
+          className="flex cursor-pointer items-center rounded-lg px-2 py-2 text-lg text-ink transition-colors hover:bg-surface2"
+        >
           <Settings size={18} />
           <span className="ml-2">{t('sideNav.settings')}</span>
-        </div>
+        </Link>
       </div>
     </aside>
   )

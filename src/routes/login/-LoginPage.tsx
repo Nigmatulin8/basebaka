@@ -3,7 +3,6 @@ import { useQueryClient } from '@tanstack/react-query'
 import { useRouter } from '@tanstack/react-router'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import '@/components/auth/styles.scss'
 import {
   authQueryKeys,
   startGoogleSignIn,

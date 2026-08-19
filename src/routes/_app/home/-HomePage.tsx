@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import '@/components/auth/styles.scss'
 
 export function HomePage() {
   const { t } = useTranslation()

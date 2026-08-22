@@ -1,8 +1,13 @@
-import { createContext, useContext } from 'react'
-import { DEFAULT_SERVER_PORT } from '@shared/config.ts'
+import { type ReactNode } from 'react'
+import { setSidecarPort } from './sidecar-client.ts'
 
-export const ServerPortContext = createContext(DEFAULT_SERVER_PORT)
-
-export function useServerPort(): number {
-  return useContext(ServerPortContext)
+export function ServerPortProvider({
+  port,
+  children,
+}: {
+  port: number
+  children: ReactNode
+}) {
+  setSidecarPort(port)
+  return children
 }

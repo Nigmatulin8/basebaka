@@ -11,7 +11,7 @@ import {
   startGoogleSignIn,
 } from './google-oauth.js'
 
-const SIDECAR_VERSION = '0.2.3'
+const SIDECAR_VERSION = '0.2.4'
 
 export async function handleAuthRoute(
   req: IncomingMessage,
@@ -22,7 +22,7 @@ export async function handleAuthRoute(
     sendJson(res, 200, {
       ok: true,
       sidecarVersion: SIDECAR_VERSION,
-      features: ['auth'],
+      features: ['auth', 'projects'],
     } satisfies HealthResponse)
     return true
   }

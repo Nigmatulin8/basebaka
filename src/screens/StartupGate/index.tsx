@@ -1,7 +1,7 @@
 import { useEffect, useState, type ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { DEFAULT_SERVER_PORT } from '@shared/config.ts'
-import { ServerPortContext } from '@/lib/server-port-context.tsx'
+import { ServerPortProvider } from '@/lib/server-port-context.tsx'
 import i18n from '@/lib/i18n.ts'
 import {
   fetchStartupStatus,
@@ -119,10 +119,10 @@ export function StartupGate({ children }: Props) {
   }
 
   return (
-    <ServerPortContext.Provider
-      value={status.status === 'ready' ? status.port : DEFAULT_SERVER_PORT}
+    <ServerPortProvider
+      port={status.status === 'ready' ? status.port : DEFAULT_SERVER_PORT}
     >
       {children}
-    </ServerPortContext.Provider>
+    </ServerPortProvider>
   )
 }

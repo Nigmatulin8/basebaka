@@ -1,13 +1,22 @@
 import { DEFAULT_SERVER_PORT, SERVER_HOST } from '@shared/config.ts'
 
+let activePort = DEFAULT_SERVER_PORT
+
+export function setSidecarPort(port: number) {
+  activePort = port
+}
+
+export function getSidecarPort(): number {
+  return activePort
+}
+
 export async function sidecarFetch(
-  port: number,
   path: string,
   init?: RequestInit,
 ): Promise<Response> {
   const base = import.meta.env.DEV
     ? '/sidecar'
-    : `http://${SERVER_HOST}:${port}`
+    : `http://${SERVER_HOST}:${activePort}`
   return fetch(`${base}${path}`, {
     ...init,
     signal: init?.signal ?? AbortSignal.timeout(30_000),
@@ -23,5 +32,3 @@ export async function readSidecarErrorMessage(
   }
   return null
 }
-
-export const defaultSidecarPort = DEFAULT_SERVER_PORT

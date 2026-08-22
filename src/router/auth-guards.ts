@@ -9,8 +9,8 @@ import type { RouterContext } from './context.ts'
 
 export async function loadAuthStatus(context: RouterContext) {
   return context.queryClient.fetchQuery({
-    queryKey: authQueryKeys.status(context.port),
-    queryFn: () => fetchAuthStatus(context.port),
+    queryKey: authQueryKeys.status,
+    queryFn: fetchAuthStatus,
   })
 }
 

@@ -13,13 +13,11 @@ import {
   openExternalUrl,
   preOpenExternalBrowserTab,
 } from '@/lib/open-external-url.ts'
-import { useServerPort } from '@/lib/server-port-context.tsx'
 import basebakaIcon from '@assets/icon.png'
 import googleIcon from '@assets/icons/google.svg'
 
 export function LoginPage() {
   const { t } = useTranslation()
-  const port = useServerPort()
   const router = useRouter()
   const queryClient = useQueryClient()
   const authQuery = useAuthStatus()
@@ -32,12 +30,12 @@ export function LoginPage() {
     setPending(true)
     try {
       const browserTab = preOpenExternalBrowserTab()
-      const { authUrl } = await startGoogleSignIn(port)
+      const { authUrl } = await startGoogleSignIn()
       await openExternalUrl(authUrl, { preOpenedWindow: browserTab })
 
-      if (await waitForGoogleSignIn(port)) {
+      if (await waitForGoogleSignIn()) {
         await queryClient.invalidateQueries({
-          queryKey: authQueryKeys.status(port),
+          queryKey: authQueryKeys.status,
         })
         await router.navigate({ to: '/' })
         return

@@ -1,7 +1,11 @@
 {
   "home": {
     "title": "Basebaka",
-    "lead": "Вы вошли в аккаунт. Здесь появятся инструменты для проектов."
+    "lead": "Вы вошли в аккаунт. Ниже список ваших Firebase-проектов.",
+    "projectsTitle": "Проекты",
+    "projectsLoading": "Загрузка проектов…",
+    "projectsEmpty": "У этого аккаунта нет Firebase-проектов.",
+    "projectsError": "Не удалось загрузить проекты"
   },
   "startupGate": {
     "failedTitle": "Что-то пошло не так",

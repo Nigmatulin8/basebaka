@@ -3,7 +3,6 @@ import type {
   AuthStatusResponse,
   GoogleAuthStartResponse,
 } from '@shared/auth.ts'
-import { useServerPort } from './server-port-context.tsx'
 import { readSidecarErrorMessage, sidecarFetch } from './sidecar-client.ts'
 
 export const GOOGLE_SIGN_IN_TIMEOUT_MS = 5 * 60 * 1000
@@ -11,7 +10,7 @@ export const GOOGLE_SIGN_IN_TIMEOUT_MS = 5 * 60 * 1000
 const GOOGLE_SIGN_IN_POLL_MS = 1500
 
 export const authQueryKeys = {
-  status: (port: number) => ['auth', 'status', port] as const,
+  status: ['auth', 'status'] as const,
 }
 
 const OUTDATED_SIDECAR =
@@ -34,39 +33,34 @@ function sleep(ms: number): Promise<void> {
 }
 
 export function useAuthStatus() {
-  const port = useServerPort()
   return useQuery({
-    queryKey: authQueryKeys.status(port),
-    queryFn: () => fetchAuthStatus(port),
+    queryKey: authQueryKeys.status,
+    queryFn: fetchAuthStatus,
     retry: 1,
   })
 }
 
-export async function fetchAuthStatus(
-  port: number,
-): Promise<AuthStatusResponse> {
-  const res = await sidecarFetch(port, '/auth/status')
+export async function fetchAuthStatus(): Promise<AuthStatusResponse> {
+  const res = await sidecarFetch('/auth/status')
   if (!res.ok) {
     throw new Error(`Auth status failed (${res.status})`)
   }
   return parseAuthStatus(await res.json())
 }
 
-export async function waitForGoogleSignIn(port: number): Promise<boolean> {
+export async function waitForGoogleSignIn(): Promise<boolean> {
   const deadline = Date.now() + GOOGLE_SIGN_IN_TIMEOUT_MS
   while (Date.now() < deadline) {
     await sleep(GOOGLE_SIGN_IN_POLL_MS)
-    if ((await fetchAuthStatus(port)).status === 'authenticated') {
+    if ((await fetchAuthStatus()).status === 'authenticated') {
       return true
     }
   }
   return false
 }
 
-export async function startGoogleSignIn(
-  port: number,
-): Promise<GoogleAuthStartResponse> {
-  const res = await sidecarFetch(port, '/auth/google/start', { method: 'POST' })
+export async function startGoogleSignIn(): Promise<GoogleAuthStartResponse> {
+  const res = await sidecarFetch('/auth/google/start', { method: 'POST' })
   if (!res.ok) {
     throw new Error(
       (await readSidecarErrorMessage(res)) ??
@@ -76,8 +70,8 @@ export async function startGoogleSignIn(
   return res.json() as Promise<GoogleAuthStartResponse>
 }
 
-export async function logoutAuth(port: number): Promise<void> {
-  const res = await sidecarFetch(port, '/auth/logout', { method: 'POST' })
+export async function logoutAuth(): Promise<void> {
+  const res = await sidecarFetch('/auth/logout', { method: 'POST' })
   if (!res.ok) {
     throw new Error(`Logout failed (${res.status})`)
   }

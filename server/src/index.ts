@@ -5,6 +5,7 @@ import { SERVER_HOST } from '../../shared/config.js'
 import { resolveServerPort } from './config.js'
 import { sendJson, sendOptions } from './http.js'
 import { loadSidecarEnvFiles } from './load-env.js'
+import { handleProjectsRoute } from './projects/routes.js'
 
 loadSidecarEnvFiles()
 
@@ -27,6 +28,9 @@ const server = http.createServer(async (req, res) => {
 
   const url = new URL(req.url ?? '/', `http://${SERVER_HOST}:${PORT}`)
   if (await handleAuthRoute(req, res, url.pathname)) {
+    return
+  }
+  if (await handleProjectsRoute(req, res, url.pathname)) {
     return
   }
   sendJson(res, 404, { ok: false, error: 'Not found' })

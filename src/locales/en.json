@@ -1,7 +1,11 @@
 {
   "home": {
     "title": "Basebaka",
-    "lead": "Signed in. Project tools will appear here."
+    "lead": "Signed in. Your Firebase projects are listed below.",
+    "projectsTitle": "Projects",
+    "projectsLoading": "Loading projects…",
+    "projectsEmpty": "No Firebase projects found for this account.",
+    "projectsError": "Failed to load projects"
   },
   "startupGate": {
     "failedTitle": "Something went wrong",

@@ -4,11 +4,11 @@ import { useRouter } from '@tanstack/react-router'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
-  authQueryKeys,
+  authStatus,
   startGoogleSignIn,
   useAuthStatus,
   waitForGoogleSignIn,
-} from '@/lib/auth-api.ts'
+} from '@/lib/api'
 import {
   openExternalUrl,
   preOpenExternalBrowserTab,
@@ -34,9 +34,7 @@ export function LoginPage() {
       await openExternalUrl(authUrl, { preOpenedWindow: browserTab })
 
       if (await waitForGoogleSignIn()) {
-        await queryClient.invalidateQueries({
-          queryKey: authQueryKeys.status,
-        })
+        await authStatus.invalidate(queryClient)
         await router.navigate({ to: '/' })
         return
       }

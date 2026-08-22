@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { useProjects } from '@/lib/projects-api.ts'
+import { useProjects } from '@/lib/api'
 import '@/components/auth/styles.scss'
 
 export function HomePage() {

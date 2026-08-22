@@ -1,10 +1,10 @@
-import type { IncomingMessage, ServerResponse } from 'node:http'
 import type {
   AuthStatusResponse,
   GoogleAuthStartResponse,
   HealthResponse,
 } from '../../../shared/auth.js'
 import { sendJson } from '../http.js'
+import { get, post } from '../router.js'
 import {
   getAuthStatus,
   logoutGoogle,
@@ -13,42 +13,30 @@ import {
 
 const SIDECAR_VERSION = '0.2.4'
 
-export async function handleAuthRoute(
-  req: IncomingMessage,
-  res: ServerResponse,
-  pathname: string,
-): Promise<boolean> {
-  if (pathname === '/health' && req.method === 'GET') {
+get('/health', (_req, res) => {
+  sendJson(res, 200, {
+    ok: true,
+    sidecarVersion: SIDECAR_VERSION,
+    features: ['auth', 'projects'],
+  } satisfies HealthResponse)
+})
+
+get('/auth/status', async (_req, res) => {
+  sendJson(res, 200, await getAuthStatus())
+})
+
+post('/auth/google/start', async (_req, res) => {
+  const result = await startGoogleSignIn()
+  if ('authUrl' in result) {
     sendJson(res, 200, {
-      ok: true,
-      sidecarVersion: SIDECAR_VERSION,
-      features: ['auth', 'projects'],
-    } satisfies HealthResponse)
-    return true
+      authUrl: result.authUrl,
+    } satisfies GoogleAuthStartResponse)
+    return
   }
+  sendJson(res, 503, result satisfies AuthStatusResponse)
+})
 
-  if (pathname === '/auth/status' && req.method === 'GET') {
-    sendJson(res, 200, await getAuthStatus())
-    return true
-  }
-
-  if (pathname === '/auth/google/start' && req.method === 'POST') {
-    const result = await startGoogleSignIn()
-    if ('authUrl' in result) {
-      sendJson(res, 200, {
-        authUrl: result.authUrl,
-      } satisfies GoogleAuthStartResponse)
-      return true
-    }
-    sendJson(res, 503, result satisfies AuthStatusResponse)
-    return true
-  }
-
-  if (pathname === '/auth/logout' && req.method === 'POST') {
-    logoutGoogle()
-    sendJson(res, 200, { ok: true })
-    return true
-  }
-
-  return false
-}
+post('/auth/logout', (_req, res) => {
+  logoutGoogle()
+  sendJson(res, 200, { ok: true })
+})

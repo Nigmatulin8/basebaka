@@ -1,4 +1,4 @@
-import { authQueryKeys, logoutAuth, useAuthStatus } from '@/lib/auth-api.ts'
+import { authStatus, logoutAuth, useAuthStatus } from '@/lib/api'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useRouter } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
@@ -15,9 +15,7 @@ export function SettingsPage() {
   const logoutMutation = useMutation({
     mutationFn: logoutAuth,
     onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: authQueryKeys.status,
-      })
+      await authStatus.invalidate(queryClient)
       await router.navigate({ to: '/login' })
     },
   })

@@ -1,17 +1,13 @@
 import { redirect } from '@tanstack/react-router'
 import {
-  authQueryKeys,
-  fetchAuthStatus,
+  authStatus,
   isAuthenticated,
   needsSignIn,
-} from '@/lib/auth-api.ts'
+} from '@/lib/api'
 import type { RouterContext } from './context.ts'
 
 export async function loadAuthStatus(context: RouterContext) {
-  return context.queryClient.fetchQuery({
-    queryKey: authQueryKeys.status(context.port),
-    queryFn: () => fetchAuthStatus(context.port),
-  })
+  return authStatus.prefetch(context.queryClient)
 }
 
 export async function redirectIfAuthenticated(context: RouterContext) {

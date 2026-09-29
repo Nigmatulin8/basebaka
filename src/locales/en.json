@@ -1,7 +1,11 @@
 {
   "home": {
     "title": "Basebaka",
-    "lead": "Signed in. Project tools will appear here."
+    "lead": "Signed in. Your Firebase projects are listed below.",
+    "projectsTitle": "Projects",
+    "projectsLoading": "Loading projects…",
+    "projectsEmpty": "No Firebase projects found for this account.",
+    "projectsError": "Failed to load projects"
   },
   "startupGate": {
     "failedTitle": "Something went wrong",
@@ -25,5 +29,31 @@
     "serviceAccountTitle": "Service Account JSON",
     "serviceAccountLead": "Import a Google Cloud key file",
     "serviceAccountSoon": "Service Account sign-in is not available yet."
+  },
+  "nav": {
+    "sidebar": "Projects",
+    "rail": "Firebase services",
+    "searchPlaceholder": "Search",
+    "own": "Own",
+    "shared": "Shared",
+    "addCollection": "Add collection",
+    "settings": "Settings",
+    "collapseSidebar": "Collapse sidebar",
+    "expandSidebar": "Expand sidebar",
+    "noProject": "Select a project",
+    "serviceStub": "This service is not available yet."
+  },
+  "services": {
+    "firestore": "Firestore",
+    "realtime": "Realtime Database",
+    "storage": "Storage",
+    "auth": "Authentication",
+    "messaging": "Messaging",
+    "functions": "Functions",
+    "hosting": "Hosting",
+    "remoteConfig": "Remote Config"
+  },
+  "common": {
+    "clear": "Clear"
   }
 }

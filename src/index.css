@@ -279,6 +279,11 @@
   border-color: var(--color-danger);
 }
 
+/* Active service on the rail. Fixed shade, not a theme token. */
+.border-rail-active {
+  border-color: #204653;
+}
+
 .bg-line {
   background-color: var(--color-border-main);
 }

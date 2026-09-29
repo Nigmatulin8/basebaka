@@ -1,10 +1,12 @@
 import http from 'node:http'
 import { URL } from 'node:url'
-import { handleAuthRoute } from './auth/routes.js'
 import { SERVER_HOST } from '../../shared/config.js'
 import { resolveServerPort } from './config.js'
 import { sendJson, sendOptions } from './http.js'
 import { loadSidecarEnvFiles } from './load-env.js'
+import { dispatch } from './router.js'
+import './auth/routes.js'
+import './projects/routes.js'
 
 loadSidecarEnvFiles()
 
@@ -26,7 +28,7 @@ const server = http.createServer(async (req, res) => {
   }
 
   const url = new URL(req.url ?? '/', `http://${SERVER_HOST}:${PORT}`)
-  if (await handleAuthRoute(req, res, url.pathname)) {
+  if (await dispatch(req, res, url.pathname)) {
     return
   }
   sendJson(res, 404, { ok: false, error: 'Not found' })

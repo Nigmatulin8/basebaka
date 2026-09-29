@@ -45,6 +45,7 @@ export default defineConfig({
     alias: {
       '@assets': path.join(rootDir, 'src/assets'),
       '@shared': path.join(rootDir, 'shared'),
+      '@ui': path.join(rootDir, 'src/components/ui'),
       '@': path.join(rootDir, 'src'),
     },
   },

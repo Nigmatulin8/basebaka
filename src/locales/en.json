@@ -30,10 +30,28 @@
     "serviceAccountLead": "Import a Google Cloud key file",
     "serviceAccountSoon": "Service Account sign-in is not available yet."
   },
-  "sideNav": {
-    "label": "Side navigation",
+  "nav": {
+    "sidebar": "Projects",
+    "rail": "Firebase services",
     "searchPlaceholder": "Search",
-    "settings": "Settings"
+    "own": "Own",
+    "shared": "Shared",
+    "addCollection": "Add collection",
+    "settings": "Settings",
+    "collapseSidebar": "Collapse sidebar",
+    "expandSidebar": "Expand sidebar",
+    "noProject": "Select a project",
+    "serviceStub": "This service is not available yet."
+  },
+  "services": {
+    "firestore": "Firestore",
+    "realtime": "Realtime Database",
+    "storage": "Storage",
+    "auth": "Authentication",
+    "messaging": "Messaging",
+    "functions": "Functions",
+    "hosting": "Hosting",
+    "remoteConfig": "Remote Config"
   },
   "common": {
     "clear": "Clear"

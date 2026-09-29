@@ -30,10 +30,28 @@
     "serviceAccountLead": "Импортируйте ключ Google Cloud",
     "serviceAccountSoon": "Вход через Service Account пока недоступен."
   },
-  "sideNav": {
-    "label": "Боковая навигация",
+  "nav": {
+    "sidebar": "Проекты",
+    "rail": "Сервисы Firebase",
     "searchPlaceholder": "Поиск",
-    "settings": "Настройки"
+    "own": "Свои",
+    "shared": "Участвую",
+    "addCollection": "Добавить коллекцию",
+    "settings": "Настройки",
+    "collapseSidebar": "Свернуть сайдбар",
+    "expandSidebar": "Развернуть сайдбар",
+    "noProject": "Выберите проект",
+    "serviceStub": "Этот сервис пока недоступен."
+  },
+  "services": {
+    "firestore": "Firestore",
+    "realtime": "Realtime Database",
+    "storage": "Storage",
+    "auth": "Authentication",
+    "messaging": "Messaging",
+    "functions": "Functions",
+    "hosting": "Hosting",
+    "remoteConfig": "Remote Config"
   },
   "common": {
     "clear": "Очистить"
